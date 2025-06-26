@@ -5,7 +5,7 @@
 
 namespace AutoSender {
 
-	void sendMessages(const std::string& message, int repeatCount, double intervalBetweenMessagesMs, int intervalBetweenCharsMs);
+	void sendMessages(const std::wstring& message, int repeatCount, double intervalBetweenMessagesMs, int intervalBetweenCharsMs);
 
 }
 #endif

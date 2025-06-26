@@ -3,6 +3,6 @@
 
 #include <string>
 
-void getUserInput(std::string& message, int& count, double& interval);
+void getUserInput(std::wstring& message, int& count, double& interval);
 
 #endif

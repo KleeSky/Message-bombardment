@@ -6,45 +6,45 @@
 
 namespace AutoSender {
 
-    // 模拟键盘输入单个字符
-    void sendChar(char ch) {
-        SHORT vk = VkKeyScanA(ch);
-        if (vk == -1) {
-            std::cout << "无法映射字符: " << ch << "，跳过" << std::endl;
-            return;
-        }
+    // 发送单个Unicode字符（支持汉字和符号）
+    void sendUnicodeChar(wchar_t ch) {
+        INPUT inputs[2] = {};
 
-        BYTE vkCode = vk & 0xFF;
-        BYTE shiftState = (vk >> 8) & 0xFF;
+        inputs[0].type = INPUT_KEYBOARD;
+        inputs[0].ki.wVk = 0;
+        inputs[0].ki.wScan = ch;
+        inputs[0].ki.dwFlags = KEYEVENTF_UNICODE;
 
-        if (shiftState & 1) {
-            keybd_event(VK_SHIFT, 0, 0, 0);
-        }
+        inputs[1].type = INPUT_KEYBOARD;
+        inputs[1].ki.wVk = 0;
+        inputs[1].ki.wScan = ch;
+        inputs[1].ki.dwFlags = KEYEVENTF_UNICODE | KEYEVENTF_KEYUP;
 
-        keybd_event(vkCode, 0, 0, 0);
-        keybd_event(vkCode, 0, KEYEVENTF_KEYUP, 0);
-
-        if (shiftState & 1) {
-            keybd_event(VK_SHIFT, 0, KEYEVENTF_KEYUP, 0);
-        }
-
-        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+        SendInput(2, inputs, sizeof(INPUT));
     }
 
-	// 模拟按下回车键
+    // 发送回车键
     void sendEnter() {
-        keybd_event(VK_RETURN, 0, 0, 0);
-        keybd_event(VK_RETURN, 0, KEYEVENTF_KEYUP, 0);
+        INPUT inputs[2] = {};
+
+        inputs[0].type = INPUT_KEYBOARD;
+        inputs[0].ki.wVk = VK_RETURN;
+
+        inputs[1].type = INPUT_KEYBOARD;
+        inputs[1].ki.wVk = VK_RETURN;
+        inputs[1].ki.dwFlags = KEYEVENTF_KEYUP;
+
+        SendInput(2, inputs, sizeof(INPUT));
     }
 
-    void sendMessages(const std::string& message, int repeatCount, double intervalBetweenMessagesMs, int intervalBetweenCharsMs) {
+    // 发送消息，消息用wstring支持汉字
+    void sendMessages(const std::wstring& message, int repeatCount, double intervalBetweenMessagesMs, int intervalBetweenCharsMs) {
         if (!message.empty()) {
-            // 模式 1：发送自定义消息
             for (int i = 0; i < repeatCount; ++i) {
-                std::cout << "发送第 " << i + 1 << " 次: " << message << std::endl;
+                std::wcout << L"发送第 " << i + 1 << L" 次: " << message << std::endl;
 
-                for (char ch : message) {
-                    sendChar(ch);
+                for (wchar_t ch : message) {
+                    sendUnicodeChar(ch);
                     std::this_thread::sleep_for(std::chrono::milliseconds(intervalBetweenCharsMs));
                 }
 
@@ -53,13 +53,13 @@ namespace AutoSender {
             }
         }
         else {
-            // 模式 2：发送从1到repeatCount的数字
+            // 发送数字模式
             for (int i = 1; i <= repeatCount; ++i) {
-                std::string numStr = std::to_string(i);
-                std::cout << "发送数字：" << numStr << std::endl;
+                std::wstring numStr = std::to_wstring(i);
+                std::wcout << L"发送数字：" << numStr << std::endl;
 
-                for (char ch : numStr) {
-                    sendChar(ch);
+                for (wchar_t ch : numStr) {
+                    sendUnicodeChar(ch);
                     std::this_thread::sleep_for(std::chrono::milliseconds(intervalBetweenCharsMs));
                 }
 
@@ -68,6 +68,6 @@ namespace AutoSender {
             }
         }
 
-        std::cout << "消息发送完毕喵~" << std::endl;
+        std::wcout << L"消息发送完毕喵~" << std::endl;
     }
 }
