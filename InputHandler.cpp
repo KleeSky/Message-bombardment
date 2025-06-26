@@ -27,39 +27,21 @@ void getUserInput(std::wstring& message, int& count, double& interval)
     {
         std::wcout << L"请输入消息内容：";
         std::getline(std::wcin, message);
-
-        while (true)
-        {
-            std::wcout << L"请输入消息数量：";
-            if (!(std::wcin >> count) || count < 0)
-            {
-                std::wcin.clear();
-                std::wcin.ignore(std::numeric_limits<std::streamsize>::max(), L'\n');
-                std::wcout << L"输入无效，请重新输入。" << std::endl;
-            }
-            else
-            {
-                std::wcin.ignore(std::numeric_limits<std::streamsize>::max(), L'\n');
-                break;
-            }
-        }
     }
-    else
+
+    while (true)
     {
-        while (true)
+        std::wcout << L"请输入消息数量：";
+        if (!(std::wcin >> count) || count <= 0)
         {
-            std::wcout << L"请输入消息数量：";
-            if (!(std::wcin >> count) || count < 0)
-            {
-                std::wcin.clear();
-                std::wcin.ignore(std::numeric_limits<std::streamsize>::max(), L'\n');
-                std::wcout << L"输入无效，请重新输入。" << std::endl;
-            }
-            else
-            {
-                std::wcin.ignore(std::numeric_limits<std::streamsize>::max(), L'\n');
-                break;
-            }
+            std::wcin.clear();
+            std::wcin.ignore(std::numeric_limits<std::streamsize>::max(), L'\n');
+            std::wcout << L"输入无效，请重新输入。" << std::endl;
+        }
+        else
+        {
+            std::wcin.ignore(std::numeric_limits<std::streamsize>::max(), L'\n');
+            break;
         }
     }
 
