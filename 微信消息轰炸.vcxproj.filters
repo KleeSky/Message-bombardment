@@ -24,12 +24,18 @@
     <ClCompile Include="AutoSender.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="KeyWaiter.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="InputHandler.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="AutoSender.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyWaiter.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

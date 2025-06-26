@@ -5,6 +5,7 @@
 #include <fcntl.h>
 #include "InputHandler.h"
 #include "AutoSender.h"
+#include "KeyWaiter.h"
 
 std::atomic<bool> running(true);
 
@@ -20,10 +21,10 @@ int main()
 
     getUserInput(message, count, interval);
 
-    std::wcout << L"五秒后开始输出内容，请将焦点放在输入框中..." << std::endl;
-    Sleep(5000);
-
-    AutoSender::sendMessages(message, count, interval, 1);
+    if (waitForF12())
+    {
+        AutoSender::sendMessages(message, count, interval, 1);
+    }
 
     return 0;
 }

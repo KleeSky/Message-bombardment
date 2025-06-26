@@ -125,6 +125,7 @@
   <ItemGroup>
     <ClCompile Include="AutoSender.cpp" />
     <ClCompile Include="InputHandler.cpp" />
+    <ClCompile Include="KeyWaiter.cpp" />
     <ClCompile Include="main.cpp">
       <DeploymentContent>false</DeploymentContent>
     </ClCompile>
@@ -132,6 +133,7 @@
   <ItemGroup>
     <ClInclude Include="AutoSender.h" />
     <ClInclude Include="InputHandler.h" />
+    <ClInclude Include="KeyWaiter.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />
