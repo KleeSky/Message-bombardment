@@ -13,30 +13,33 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="核心模块">
+      <UniqueIdentifier>{e8c5a3d2-6f4a-4b8e-9c3d-1a2b3c4d5e6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI 模块">
+      <UniqueIdentifier>{f9d6b4e3-7g5b-5c9f-0d4e-2b3c4d5e6f7g}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="src\core\InputSimulator.cpp">
+      <Filter>核心模块</Filter>
     </ClCompile>
-    <ClCompile Include="InputHandler.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="src\core\MessageSender.cpp">
+      <Filter>核心模块</Filter>
     </ClCompile>
-    <ClCompile Include="AutoSender.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="KeyWaiter.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="src\gui\MainWindow.cpp">
+      <Filter>GUI 模块</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="InputHandler.h">
+    <ClInclude Include="include\InputSimulator.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="AutoSender.h">
+    <ClInclude Include="include\MessageSender.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="KeyWaiter.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="src\gui\MainWindow.h">
+      <Filter>GUI 模块</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
